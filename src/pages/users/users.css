@@ -1,0 +1,98 @@
+.block {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px;
+    text-align: left;
+    box-shadow: var(--shadow);
+}
+
+.block-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.block-header h1 {
+    margin: 0;
+}
+
+.search-group {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    max-width: 500px;
+    margin-left: auto;
+}
+
+.search-text {
+    font-size: 24px;
+    font-weight: 600;
+    margin-right: 0;
+}
+
+.search-input {
+    flex: 1;
+    min-width: 75px;
+    width: auto;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 16px;
+    color: var(--text-h);
+    background: var(--bg);
+}
+
+.users-table th,
+.users-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    white-space: nowrap;
+}
+
+.users-table-wrap {
+    margin-top: 16px;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 560px;
+}
+
+.users-table th {
+    color: var(--text-h);
+    font-weight: 600;
+    background: var(--social-bg);
+}
+
+.users-table tbody tr:hover {
+    background: var(--accent-bg);
+    cursor: pointer;
+}
+
+.users-empty {
+    text-align: center !important;
+    color: var(--text-h);
+    font-weight: 500;
+    padding: 20px 12px !important;
+}
+
+@media (min-width: 1024px) and (max-width: 1440px) {
+    .users-table .location-col {
+        display: none;
+    }
+}
+
+@media (max-width: 1023px) {
+    .users-table .location-col,
+    .users-table .birthdate-col,
+    .users-table .email-col {
+        display: none;
+    }
+}
