@@ -44,6 +44,34 @@
     background: var(--bg);
 }
 
+.add-user-row {
+    margin-top: 12px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.add-age-input {
+    max-width: 120px;
+}
+
+.add-user-btn {
+    border: 1px solid var(--border);
+    background: var(--social-bg);
+    color: var(--text-h);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.add-user-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 .users-table th,
 .users-table td {
     padding: 10px 12px;
@@ -84,7 +112,8 @@
 }
 
 @media (min-width: 1024px) and (max-width: 1440px) {
-    .users-table .location-col {
+    .users-table .location-col,
+    .add-user-row .add-user-location {
         display: none;
     }
 }
@@ -92,7 +121,10 @@
 @media (max-width: 1023px) {
     .users-table .location-col,
     .users-table .birthdate-col,
-    .users-table .email-col {
+    .users-table .email-col,
+    .add-user-row .add-user-location,
+    .add-user-row .add-user-birthdate,
+    .add-user-row .add-user-email {
         display: none;
     }
 }

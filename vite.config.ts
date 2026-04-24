@@ -6,6 +6,9 @@ import babel from '@rolldown/plugin-babel'
 export default defineConfig(({ command }) => ({
   // GitHub Pages serves the app from /<repo-name>/ in production.
   base: command === 'build' ? '/GabaHR/' : '/',
+  server: {
+    port: 8000,
+  },
   plugins: [
     react(),
     babel({ presets: [reactCompilerPreset()] })
