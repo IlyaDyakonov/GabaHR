@@ -184,8 +184,7 @@
 }
 
 @media (min-width: 1024px) and (max-width: 1440px) {
-    .users-table .location-col,
-    .add-user-row .add-user-location {
+    .users-table .location-col {
         display: none;
     }
 }
@@ -193,10 +192,7 @@
 @media (max-width: 1023px) {
     .users-table .location-col,
     .users-table .birthdate-col,
-    .users-table .email-col,
-    .add-user-row .add-user-location,
-    .add-user-row .add-user-birthdate,
-    .add-user-row .add-user-email {
+    .users-table .email-col {
         display: none;
     }
 }
