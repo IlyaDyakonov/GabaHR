@@ -111,6 +111,78 @@
     padding: 20px 12px !important;
 }
 
+.user-action-menu {
+    position: fixed;
+    z-index: 10;
+    width: min(235px, calc(100vw - 24px));
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    background: var(--bg);
+    color: var(--text);
+}
+
+.user-action-title {
+    margin: 0 0 10px;
+    color: var(--text-h);
+    font-weight: 600;
+    text-align: center;
+    font-size: 22px;
+}
+
+.user-action-field {
+    margin: 0px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.user-action-label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-h);
+    font-weight: 600;
+}
+
+.user-action-input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.user-action-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.user-action-btn {
+    border: 1px solid var(--border);
+    background: var(--social-bg);
+    color: var(--text-h);
+    border-radius: 10px;
+    padding: 8px 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.user-action-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.user-action-danger {
+    color: #c2410c;
+}
+
+.user-action-error {
+    margin: 8px 0 0;
+    color: #c2410c;
+    font-size: 14px;
+}
+
 @media (min-width: 1024px) and (max-width: 1440px) {
     .users-table .location-col,
     .add-user-row .add-user-location {
@@ -126,5 +198,18 @@
     .add-user-row .add-user-birthdate,
     .add-user-row .add-user-email {
         display: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .block-header {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .search-group {
+        margin-left: 0;
+        max-width: none;
+        width: 100%;
     }
 }

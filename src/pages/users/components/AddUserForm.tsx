@@ -2,6 +2,9 @@ import { useState } from "react";
 import type { AddUserFormProps, AddUserFormValues } from "../../../types/users";
 
 
+    /**
+     * Форма добавления нового пользователя.
+     */
 export function AddUserForm({
     disabled = false,
     isSubmitting = false,
@@ -15,6 +18,9 @@ export function AddUserForm({
     const [location, setLocation] = useState("");
     const [cardNumber, setCardNumber] = useState("");
 
+    /**
+     * Проверяет заполнение формы, передает данные наверх и очищает поля после успешного добавления.
+     */
     async function handleSubmit() {
         const values: AddUserFormValues = {
             name: name.trim(),

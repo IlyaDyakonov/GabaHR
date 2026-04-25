@@ -1,6 +1,10 @@
 import { useMemo, useState } from "react";
 import type { UserPreview } from "../../../types/users";
 
+/**
+ * Хранит строку поиска и возвращает список пользователей,
+ * отфильтрованный по имени, фамилии, email, телефону и номеру карты.
+ */
 export function useUsersSearch(users: UserPreview[]) {
     const [searchValue, setSearchValue] = useState("");
 

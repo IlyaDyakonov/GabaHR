@@ -53,6 +53,33 @@ export interface AddUserResponse {
     };
 }
 
+export type UserEditableField = "name" | "phone" | "email" | "birthDate" | "location" | "cardNumber";
+
+export interface UpdateUserPayload {
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    phone?: string;
+    birthDate?: string;
+    address?: {
+        city?: string;
+        country?: string;
+    };
+    bank?: {
+        cardNumber?: string;
+    };
+}
+
+export interface UpdateUserResponse extends UpdateUserPayload {
+    id: number;
+}
+
+export interface DeleteUserResponse {
+    id: number;
+    isDeleted: boolean;
+    deletedOn?: string;
+}
+
 export interface AddUserFormValues {
     name: string;
     phone: string;

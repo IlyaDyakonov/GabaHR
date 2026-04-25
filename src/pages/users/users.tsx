@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
-import { addUser, getAllUsers } from "../../api/users/apiUsers";
-import type { UserPreview, UsersResponse } from "../../types/users";
+import { addUser, deleteUser, getAllUsers, updateUser } from "../../api/users/apiUsers";
+import type { UserEditableField, UserPreview, UsersResponse } from "../../types/users";
 import type { AddUserFormValues } from "../../types/users";
 import { AddUserForm } from "./components/AddUserForm";
 import { UsersTable } from "./components/UsersTable";
 import { useUsersSearch } from "./hooks/useUsersSearch";
+import { applyUserUpdate, getUpdatePayload } from "./utils/userFieldUpdate";
 import "./users.css";
 
 
+/**
+ * Главный компонент страницы пользователей.
+ * Загружает список пользователей, добавляет новых, обновляет поля и удаляет пользователей.
+ */
 export default function UsersSection() {
     const [users, setUsers] = useState<UserPreview[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -17,6 +22,9 @@ export default function UsersSection() {
     useEffect(() => {
         let isMounted = true;
 
+        /**
+         * Загружает пользователей при открытии страницы и защищает состояние от обновления после unmount.
+         */
         async function loadUsers() {
             try {
                 setIsLoading(true);
@@ -45,6 +53,9 @@ export default function UsersSection() {
         };
     }, []);
 
+    /**
+     * Создает пользователя через API и добавляет его в начало локального списка.
+     */
     async function handleAddUser(values: AddUserFormValues) {
         const [countryPart, cityPart] = values.location.split(",").map((value) => value.trim());
         const country = countryPart || values.location;
@@ -88,6 +99,43 @@ export default function UsersSection() {
         }
     }
 
+    /**
+     * Обновляет выбранное поле пользователя через PATCH и синхронизирует локальную таблицу.
+     */
+    async function handleUpdateUserField(
+        user: UserPreview,
+        field: UserEditableField,
+        value: string,
+    ) {
+        try {
+            setError(null);
+            await updateUser(user.id, getUpdatePayload(user, field, value));
+
+            setUsers((prevUsers) =>
+                prevUsers.map((prevUser) =>
+                    prevUser.id === user.id ? applyUserUpdate(prevUser, field, value) : prevUser,
+                ),
+            );
+        } catch (updateError) {
+            setError("Не удалось обновить пользователя. Попробуйте позже.");
+            console.error(updateError);
+        }
+    }
+
+    /**
+     * Удаляет пользователя через API и убирает его из локального списка.
+     */
+    async function handleDeleteUser(userId: number) {
+        try {
+            setError(null);
+            await deleteUser(userId);
+            setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
+        } catch (deleteError) {
+            setError("Не удалось удалить пользователя. Попробуйте позже.");
+            console.error(deleteError);
+        }
+    }
+
     const { searchValue, setSearchValue, filteredUsers } = useUsersSearch(users);
 
     return (
@@ -118,7 +166,12 @@ export default function UsersSection() {
             {isLoading && <p>Загрузка пользователей...</p>}
             {error && <p>{error}</p>}
             {!isLoading && !error && (
-                <UsersTable users={filteredUsers} hasSearch={Boolean(searchValue.trim())} />
+                <UsersTable
+                    users={filteredUsers}
+                    hasSearch={Boolean(searchValue.trim())}
+                    onUpdateField={handleUpdateUserField}
+                    onDeleteUser={handleDeleteUser}
+                />
             )}
         </section>
     );
