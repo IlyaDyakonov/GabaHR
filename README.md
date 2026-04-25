@@ -86,3 +86,10 @@ GabaHR/
 ├── package.json                        # зависимости и npm-скрипты
 └── README.md                           # описание проекта и инструкция запуска
 ```
+
+
+## Контакты
+
+- Telegram: https://t.me/Ilya_dot_d
+- Резюме: https://t.ly/PvSp2
+- Портфолио: https://github.com/IlyaDyakonov
